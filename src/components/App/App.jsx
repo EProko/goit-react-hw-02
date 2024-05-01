@@ -26,19 +26,24 @@ export default function App() {
       ...response,
       [feedbackType]: response[feedbackType] + 1,
     });
+  };
 
-    feedbackType === "reset" &&
-      setClicks({
-        good: 0,
-        neutral: 0,
-        bad: 0,
-      });
+  const resetFeedback = () => {
+    setClicks({
+      good: 0,
+      neutral: 0,
+      bad: 0,
+    });
   };
 
   return (
     <>
       <Description />
-      <Options onUpdate={updateFeedback} total={totalFeedback} />
+      <Options
+        onUpdate={updateFeedback}
+        onReset={resetFeedback}
+        total={totalFeedback}
+      />
       {totalFeedback === 0 ? (
         <Notification />
       ) : (
